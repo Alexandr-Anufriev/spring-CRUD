@@ -17,7 +17,6 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     @SuppressWarnings("unchecked")
-    @Transactional
     public List<User> getAllUsers() {
         Query query = entityManager.createNativeQuery("select * from user", User.class);
         List<User> list = query.getResultList();
@@ -25,25 +24,25 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    @Transactional
+
     public User getUser(int id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
-    @Transactional
+
     public void addUser(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    @Transactional
+
     public void update(int id, User updatedUser) {
         entityManager.merge(updatedUser);
     }
 
     @Override
-    @Transactional
+
     public void delete(int id) {
         entityManager.remove(getUser(id));
     }
